@@ -45,13 +45,17 @@ public class GiftCardTest
 		balance = 100.00;
 		card = new GiftCard(issuingStore, balance);
 		
-		transaction = 0.00;
+		transaction = 100.00;
 		
 		if(transaction <= balance)
 		{
 			assertEquals("testDeduct()",
 					"Remaining Balance: " + String.format("%6.2f",
 	                        Math.abs(balance - transaction)), card.deduct(transaction));	
+		}
+		else if(transaction < 0.0)
+		{
+			assertEquals("testDeduct()","Invalid Transaction",card.deduct(transaction));
 		}
 		else // transaction > balance
 		{
